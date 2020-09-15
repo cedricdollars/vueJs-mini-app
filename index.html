@@ -3,19 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue Js</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Delivery Eat 🍟</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/v4-shims.css"
+    />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./assets/Css/index.css" />
   </head>
   <body>
     <div id="app">
-      <div class="container"></div>
+      <header>
+        <nav>
+          <div class="logo">
+            <router-link to="/">
+              <p class="logo-text"><b>Delivery</b><span>Eat</span></p>
+            </router-link>
+          </div>
+          <ul id="icons" class="fa-ul">
+            <li>
+              <router-link to="/account">
+                <i class="fas fa-user"></i>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/favorites">
+                <i class="fas fa-heart"></i>
+                <span id="notif"></span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/cart">
+                <i class="fas fa-shopping-cart"></i>
+              </router-link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <router-view></router-view>
     </div>
-    <script></script>
+    <script type="text/x-template" id="home">
+      <div class="container-home">
+        <h1> Nos plats </h1>
+        <div class="card-container">
+            <!-- container repas -->
+        </div>
+      </div>
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="./assets/Js/vue.js"></script>
+    <script src="./assets/Js/index.js"></script>
   </body>
 </html>
