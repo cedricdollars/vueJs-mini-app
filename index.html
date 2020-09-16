@@ -49,19 +49,63 @@
           </ul>
         </nav>
       </header>
+
       <router-view></router-view>
     </div>
     <script type="text/x-template" id="home">
       <div class="container-home">
         <h1> Nos plats </h1>
+
+        <!-- Search bar -->
+        <input v-model="searchKey" type="search" id="search" placeholder="Rechercher un plat..." autocomplete="off"/>
+        <span v-if="searchKey && filteredSearch.length >= 1 ">
+          {{filteredSearch.length}} résultat<span v-if="filteredSearch.length >= 2">s</span>
+        </span>
+
         <div class="card-container">
             <!-- container repas -->
+            <div v-for="product in filteredSearch" class="card">
+              <div class="img-container">
+                <img v-bind:src="product.path" alt="img" />
+                <div class="card-icons">
+                  <div class="like-content">
+                    <input
+                      type="checkbox"
+                      name="checkbox"
+                      v-bind:id="product.id"
+                      :value=product.id
+                      v-model="liked"
+                    >
+                    <label v-bind:for="product.id">
+                      <i class="fas fa-heart"></i>
+                    </label>
+                  </div>
+                  <div class="add-to-cart">
+                    <button>
+                      <i class="fas fa-shopping-cart"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="card-text">
+                  <h3>{{product.description}} </h3>
+                  <span>{{product.price}}€ </span>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!--No results found -->
+        <div v-if="filteredSearch.length == 0" class="no-result">
+          <h3>Désolé </h3>
+          <p>Aucun résultat</p>
         </div>
       </div>
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/vue-cookies@1.7.4/vue-cookies.js"></script>
     <script src="./assets/Js/vue.js"></script>
     <script src="./assets/Js/index.js"></script>
   </body>

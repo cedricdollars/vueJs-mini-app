@@ -1,8 +1,8 @@
-const data = [
+const products = [
   {
     id: 1,
     description: "Burger",
-    price: 7.8,
+    price: 7.55,
     path: "assets/images/burger.jpg",
   },
   { id: 2, description: "Pizza", price: 13.5, path: "assets/images/pizza.jpg" },
@@ -22,14 +22,14 @@ const data = [
   {
     id: 6,
     description: "Petit dejeuner",
-    price: 9.2,
-    path: "assets/images/petit_dejeuner.jpg",
+    price: 3.2,
+    path: "assets/images/cookie.jpg",
   },
   {
     id: 7,
     description: "Africain",
     price: 12.0,
-    path: "assets/images/meal_africain.jpg",
+    path: "assets/images/meal_african.jpg",
   },
   {
     id: 8,
@@ -48,10 +48,22 @@ const data = [
 const Home = {
   template: "#home",
   name: "Home",
-  fetchData: () => {
+
+  data: function () {
     return {
-      data,
+      products,
+      searchKey: "",
+      liked: [],
     };
+  },
+  computed: {
+    filteredSearch() {
+      return this.products.filter((product) => {
+        return product.description
+          .toLowerCase()
+          .includes(this.searchKey.toLowerCase());
+      });
+    },
   },
 };
 const Account = {
@@ -78,4 +90,6 @@ const router = new VueRouter({
 
 const vue = new Vue({
   router,
+  products: [],
 }).$mount("#app");
+vue.products = [];
