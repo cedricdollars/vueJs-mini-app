@@ -54,6 +54,7 @@ const Home = {
       products,
       searchKey: "",
       liked: [],
+      cart: [],
     };
   },
   computed: {
@@ -64,6 +65,31 @@ const Home = {
           .includes(this.searchKey.toLowerCase());
       });
     },
+    getLikedItems() {
+      let valueCookie = JSON.parse($cookies.get("like"));
+      valueCookie = null ? (this.liked = []) : (this.liked = valueCookie);
+    },
+  },
+  methods: {
+    setLikedItems() {
+      setTimeout(() => {
+        document.addEventListener("input", () => {
+          $cookies.set("like", JSON.stringify(this.liked));
+        });
+      }, 300);
+    },
+    addToCart(product) {
+      this.cart.push({
+        id: product.id,
+        description: product.description,
+        image: product.path,
+        price: product.price,
+        quantity: 1,
+      });
+    },
+  },
+  mounted: () => {
+    this.getLikedItems;
   },
 };
 const Account = {

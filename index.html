@@ -75,13 +75,14 @@
                       v-bind:id="product.id"
                       :value=product.id
                       v-model="liked"
+                      @click="setLikedItems()"
                     >
                     <label v-bind:for="product.id">
                       <i class="fas fa-heart"></i>
                     </label>
                   </div>
                   <div class="add-to-cart">
-                    <button>
+                    <button v-on:click="addToCart(product)">
                       <i class="fas fa-shopping-cart"></i>
                     </button>
                   </div>
